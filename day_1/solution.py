@@ -20,7 +20,6 @@ def solve_part_two(input_text):
         full_rotations, partial_rotations = amount // 100, amount % 100
         counter += full_rotations
 
-        print(counter, position)
         position = (
             position + partial_rotations
             if direction == "R"
