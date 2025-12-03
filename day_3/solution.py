@@ -1,8 +1,7 @@
 def solve_part_one(input_text):
     nums = []
     for line in input_text:
-        line = line.strip()
-        int_list = [int(num) for num in line]
+        int_list = [int(num) for num in line.strip()]
         biggest, biggest_index = 0, -1
         second_biggest, second_biggest_index = 0, -1
         for i, num in enumerate(int_list):
@@ -17,17 +16,16 @@ def solve_part_one(input_text):
 
         # bigger number appears later, choose another number that appears after
         if biggest_index > second_biggest_index:
-            # if last number, don't bother
-            if biggest_index != len(int_list) - 1:
+            # if last number, don't bother checking for a new one
+            if biggest_index == len(int_list) - 1:
+                # swap for convenience
+                biggest, second_biggest = second_biggest, biggest
+            else:
                 second_biggest = 0
                 for num in int_list[biggest_index + 1 : len(int_list)]:
                     if num > second_biggest:
                         second_biggest = num
-                nums.append(int(str(biggest) + str(second_biggest)))
-            else:
-                nums.append(int(str(second_biggest) + str(biggest)))
-        else:
-            nums.append(int(str(biggest) + str(second_biggest)))
+        nums.append(int(str(biggest) + str(second_biggest)))
 
     return sum(nums)
 
