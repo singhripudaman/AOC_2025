@@ -37,7 +37,7 @@ def solve_part_two(input_text):
 
 
 def main():
-    with open("day_1.txt", "r") as f:
+    with open("input.txt", "r") as f:
         lines = f.readlines()
         print(f"Solution of part one is {solve_part_one(lines)}")
         print(f"Solution of part two is {solve_part_two(lines)}")
