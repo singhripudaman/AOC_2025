@@ -31,7 +31,27 @@ def solve_part_one(input_text):
 
 
 def solve_part_two(input_text):
-    return 0
+    nums = []
+    for line in input_text:
+        digits_required = 12
+        int_list = [int(num) for num in line.strip()]
+        # for i in range(digits_required, -1, -1):
+
+        #     print(i)
+
+        shortened = int_list[: len(int_list) + 1 - digits_required]
+        starting_value = shortened.index(max(shortened))
+
+        required_nums = sorted(int_list[starting_value:], reverse=True)[
+            :digits_required
+        ]
+        number_components = []
+        for num in int_list[starting_value:][::-1]:
+            if num in required_nums:
+                required_nums.remove(num)
+                number_components.append(num)
+        nums.append(int("".join(str(x) for x in number_components[::-1])))
+    return nums
 
 
 def main():
